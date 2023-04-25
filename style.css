@@ -7,12 +7,15 @@
   --clr-primary: #38003c;
   --clr-primary-light: #af99b1;
   --clr-white: #f8fafc;
-  --clr-gray: #f9fafb;
+  --clr-gray: #f3f4f6;
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --rounded: 4px;
   --rounded-md: 6px;
   --fw-semibold: 500;
+  --win-bg: #86efac;
+  --draw-bg: #fcd34d;
+  --loss-bg: #fca5a5;
 }
 
 *,
@@ -25,9 +28,11 @@
 
 html {
   --bg-clr: var(--clr-white);
-  --bg-clr-sec: var(var(--clr-gray));
+  --bg-clr-sec: var(--clr-gray);
   --text-clr: var(--clr-primary);
+  --table-bg: var(--clr-primary);
   --error-text: #dc2626;
+  --card-title-bg: #e2e8f0;
   font-family: var(--ff-body);
   line-height: 1.5;
 }
@@ -36,7 +41,9 @@ html[data-theme='dark'] {
   --bg-clr: var(--clr-primary);
   --text-clr: var(--clr-white);
   --error-text: #fca5a5;
-  --bg-clr-sec: var(var(--clr-primary-light));
+  --bg-clr-sec: var(--clr-primary-light);
+  --card-title-bg: #9c809e;
+  --table-bg: #9c809e;
 }
 
 html.transition,
@@ -102,8 +109,16 @@ h6 {
   align-items: center;
 }
 
+.self-center {
+  align-self: center;
+}
+
 .flex-col {
   flex-direction: column;
+}
+
+.gap {
+  gap: 0.25rem;
 }
 
 /* THEME TOGGLE */
@@ -152,7 +167,7 @@ h6 {
 main {
   max-width: 64rem;
   margin: 2vw auto;
-  min-height: 24rem;
+  min-height: 48rem;
   background-color: var(--bg-clr);
   box-shadow: var(--shadow-md);
   border-radius: var(--rounded-md);
@@ -190,6 +205,150 @@ main h1 {
 
 #search.is-invalid + span {
   display: block;
+}
+
+.main-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.club-information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.club-information div:first-child {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.about-club {
+  align-self: center;
+}
+
+.points-rank {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background-color: var(--bg-clr-sec);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-clr);
+  align-self: center;
+  box-shadow: var(--shadow-md);
+}
+
+.points-rank .points {
+  margin-top: -8px;
+}
+
+.points-rank .rank {
+  font-size: 44px;
+  font-weight: 600;
+}
+
+.club-form {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.form {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-clr);
+}
+
+.form.w {
+  background-color: var(--win-bg);
+}
+
+.form.l {
+  background-color: var(--loss-bg);
+}
+
+.form.d {
+  background-color: var(--draw-bg);
+}
+
+.match-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.stat-card {
+  background-color: var(--bg-clr-sec);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--rounded-md);
+  overflow: hidden;
+}
+
+.stat-card .title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-clr);
+  background-color: var(--card-title-bg);
+  padding: 0 8px;
+}
+
+.stat-card .content {
+  padding: 4px 8px;
+}
+
+.stat-card .content .stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-card .content .stat:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+table {
+  width: 800px;
+  font-size: 18px;
+  /* border: 1px solid #343a40; */
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+th,
+td {
+  /* border: 1px solid #343a40; */
+  padding: 16px 24px;
+  text-align: left;
+}
+
+thead tr {
+  background-color: var(--table-bg);
+  color: #fff;
+}
+
+thead th {
+  width: 25%;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+  color: #38003c;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--bg-clr-sec);
 }
 
 /* MOBILE */
