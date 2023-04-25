@@ -24,7 +24,7 @@ function changeTheme() {
   }
 }
 
-async function sendRequest(url) {
+async function sendRequest(url, apiKey) {
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -32,4 +32,37 @@ async function sendRequest(url) {
     },
   });
   return await response.json();
+}
+
+async function getSecondaryTeams() {
+  const { teams } = await sendRequest(
+    'https://football-web-pages1.p.rapidapi.com/teams.json?comp=1'
+  );
+  return teams;
+}
+
+async function getTeams() {
+  const teams = await sendRequest(
+    'https://api-football-beta.p.rapidapi.com/teams?league=39&season=2022'
+  );
+  const formattedTeams = teams.response.map(team => {
+    return {
+      id: team.team.id,
+      name: team.team.name,
+    };
+  });
+
+  const secondaryTeams = await getSecondaryTeams();
+
+  formattedTeams.forEach(team => {
+    const secTeam = secondaryTeams.find(
+      tm =>
+        tm['full-name'] === team.name ||
+        tm['short-name'] === team.name ||
+        tm['short-name'].toLowerCase().includes(team.name.toLowerCase())
+    );
+    team.secondaryId = secTeam?.id;
+  });
+
+  return formattedTeams;
 }
