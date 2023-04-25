@@ -4,6 +4,7 @@ const switchEl = document.querySelector('.switch');
 const form = document.querySelector('form');
 const input = document.querySelector('input');
 const domainUrl = 'https://api-football-v1.p.rapidapi.com/v3';
+const mainContent = document.querySelector('.main-content');
 
 //animate tranistion between themes
 function transition() {
@@ -65,4 +66,55 @@ async function getTeams() {
   });
 
   return formattedTeams;
+}
+
+function errorHandler(name) {
+  mainContent.innerHTML = `<div class="error">No search results found for: ${name}</div>`;
+  setTimeout(() => {
+    mainContent.innerHTML = '';
+  }, 8000);
+}
+
+async function getClubInfo(id) {
+  return await sendRequest(`${domainUrl}/teams?id=${id}&league=39&season=2022`);
+}
+
+async function getClubStats(id) {
+  return await sendRequest(
+    `${domainUrl}/teams/statistics?league=39&season=2022&team=${id}`
+  );
+}
+
+async function getLeagueRankings() {
+  return await sendRequest(
+    `https://football-web-pages1.p.rapidapi.com/league-table.json?comp=1`
+  );
+}
+
+async function getTopScorers(id) {
+  return await sendRequest(
+    `https://football-web-pages1.p.rapidapi.com/goalscorers.json?comp=1&team=${id}`
+  );
+}
+
+function setLoadingSpinner() {
+  mainContent.innerHTML = `
+  <div class="spinner">
+    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+      class="spinner_P7sC"
+    />
+    </svg>
+  </div>
+  `;
+}
+
+function removeSpinner() {
+  mainContent.querySelector('.spinner').remove();
+}
+
+function findRankAndPoints(teamsArray, id) {
+  const foundResult = teamsArray.find(team => team.id === id);
+  return { rank: foundResult.position, points: foundResult['total-points'] };
 }
