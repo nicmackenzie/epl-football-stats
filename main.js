@@ -29,7 +29,6 @@ form.addEventListener('submit', e => {
 });
 
 async function fetchData(name) {
-  setLoadingSpinner();
   const teams = await getTeams();
   const team = teams.find(
     team => team.name.toLowerCase() === name.toLowerCase()
