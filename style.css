@@ -230,6 +230,15 @@ main h1 {
   align-self: center;
 }
 
+.about-club button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .points-rank {
   width: 128px;
   height: 128px;
@@ -349,6 +358,15 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
   background-color: var(--bg-clr-sec);
+}
+
+.error {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #ef4444;
+  border-radius: var(--rounded-md);
+  padding: 1.5rem;
+  font-size: 24px;
 }
 
 /* MOBILE */
