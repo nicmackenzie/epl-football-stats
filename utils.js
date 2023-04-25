@@ -118,3 +118,7 @@ function findRankAndPoints(teamsArray, id) {
   const foundResult = teamsArray.find(team => team.id === id);
   return { rank: foundResult.position, points: foundResult['total-points'] };
 }
+
+function getLastTen(form) {
+  return form.substr(form.length - 10);
+}
