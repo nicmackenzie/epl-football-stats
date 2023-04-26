@@ -1,6 +1,7 @@
 # EPL Stats 2022/2023 season
 
 Get stats for your favorite club for the current 2022/2023 season along with some vital club information.
+To access the full application,[click here](https://epl-football-stats.vercel.app/)
 
 ## Table of contents
 
