@@ -16,6 +16,8 @@
   --win-bg: #86efac;
   --draw-bg: #fcd34d;
   --loss-bg: #fca5a5;
+  --clr-secondary: #00ff85;
+  --transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *,
@@ -214,6 +216,44 @@ main h1 {
   gap: 2.5rem;
 }
 
+.action {
+  display: flex;
+}
+
+.like-btn {
+  outline: none;
+  font-weight: 500;
+  text-transform: uppercase;
+  gap: 4px;
+  border: 1px solid var(--clr-secondary);
+  background-color: transparent;
+  color: var(--text-clr);
+  border-radius: var(--rounded-md);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.like-btn:hover {
+  /* background-color: #00e678; */
+  background-color: #99ffce;
+}
+
+.like-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.like-btn.liked {
+  background-color: var(--clr-secondary);
+}
+
+.like-btn.liked:hover {
+  background-color: #00e678;
+}
+
 .club-information {
   display: flex;
   justify-content: space-between;
@@ -223,7 +263,6 @@ main h1 {
   display: flex;
   gap: 1rem;
   font-size: 1.125rem;
-  font-weight: 600;
 }
 
 .about-club {
