@@ -5,6 +5,7 @@ const form = document.querySelector('form');
 const input = document.querySelector('input');
 const domainUrl = 'https://api-football-v1.p.rapidapi.com/v3';
 const mainContent = document.querySelector('.main-content');
+let teamName;
 
 //animate tranistion between themes
 function transition() {
