@@ -435,6 +435,7 @@ tbody tr:nth-child(even) {
     margin: 4vw 1rem;
     margin-inline: 1rem;
     border-radius: var(--rounded);
+    min-height: 100dvh - 2rem;
   }
 
   main h1 {
