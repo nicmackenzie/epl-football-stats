@@ -1,9 +1,36 @@
+import {
+  getFavoriteClub,
+  likeButtonText,
+  getLastTen,
+  findRankAndPoints,
+  removeSpinner,
+  setLoadingSpinner,
+  getTopScorers,
+  getLeagueRankings,
+  getClubStats,
+  getClubInfo,
+  errorHandler,
+  getTeams,
+  changeTheme,
+  mainContent,
+} from './utils.js';
+// variables
+const themeToggle = document.querySelector('.theme-toggle');
+const switchEl = document.querySelector('.switch');
+const form = document.querySelector('form');
+const input = document.querySelector('input');
+
+let teamName;
+let isLiked = false;
+let searchDone = false;
+
 document.addEventListener('DOMContentLoaded', () => {
   const favClub = getFavoriteClub()?.toString();
   if (favClub) {
     fetchData(favClub);
   }
 });
+
 themeToggle.addEventListener('click', () => {
   switchEl.classList.toggle('dark');
   changeTheme();

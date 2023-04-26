@@ -1,23 +1,14 @@
-// variables
-const themeToggle = document.querySelector('.theme-toggle');
-const switchEl = document.querySelector('.switch');
-const form = document.querySelector('form');
-const input = document.querySelector('input');
 const domainUrl = 'https://api-football-v1.p.rapidapi.com/v3';
-const mainContent = document.querySelector('.main-content');
-let teamName;
-let isLiked = false;
-let searchDone = false;
-
+export const mainContent = document.querySelector('.main-content');
 //animate tranistion between themes
-function transition() {
+export function transition() {
   document.documentElement.classList.add('transition');
   window.setTimeout(() => {
     document.documentElement.classList.remove('transition');
   }, 1000);
 }
 
-function changeTheme() {
+export function changeTheme() {
   const theme = document.documentElement.getAttribute('data-theme');
   if (theme === 'light') {
     transition();
@@ -28,7 +19,7 @@ function changeTheme() {
   }
 }
 
-async function sendRequest(url, apiKey) {
+export async function sendRequest(url) {
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -38,14 +29,14 @@ async function sendRequest(url, apiKey) {
   return await response.json();
 }
 
-async function getSecondaryTeams() {
+export async function getSecondaryTeams() {
   const { teams } = await sendRequest(
     'https://football-web-pages1.p.rapidapi.com/teams.json?comp=1'
   );
   return teams;
 }
 
-async function getTeams() {
+export async function getTeams() {
   const teams = await sendRequest(
     'https://api-football-beta.p.rapidapi.com/teams?league=39&season=2022'
   );
@@ -71,36 +62,36 @@ async function getTeams() {
   return formattedTeams;
 }
 
-function errorHandler(name) {
+export function errorHandler(name) {
   mainContent.innerHTML = `<div class="error">No search results found for: ${name}</div>`;
   setTimeout(() => {
     mainContent.innerHTML = '';
   }, 8000);
 }
 
-async function getClubInfo(id) {
+export async function getClubInfo(id) {
   return await sendRequest(`${domainUrl}/teams?id=${id}&league=39&season=2022`);
 }
 
-async function getClubStats(id) {
+export async function getClubStats(id) {
   return await sendRequest(
     `${domainUrl}/teams/statistics?league=39&season=2022&team=${id}`
   );
 }
 
-async function getLeagueRankings() {
+export async function getLeagueRankings() {
   return await sendRequest(
     `https://football-web-pages1.p.rapidapi.com/league-table.json?comp=1`
   );
 }
 
-async function getTopScorers(id) {
+export async function getTopScorers(id) {
   return await sendRequest(
     `https://football-web-pages1.p.rapidapi.com/goalscorers.json?comp=1&team=${id}`
   );
 }
 
-function setLoadingSpinner() {
+export function setLoadingSpinner() {
   mainContent.innerHTML = `
   <div class="spinner">
     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -113,20 +104,20 @@ function setLoadingSpinner() {
   `;
 }
 
-function removeSpinner() {
+export function removeSpinner() {
   mainContent.querySelector('.spinner').remove();
 }
 
-function findRankAndPoints(teamsArray, id) {
+export function findRankAndPoints(teamsArray, id) {
   const foundResult = teamsArray.find(team => team.id === id);
   return { rank: foundResult.position, points: foundResult['total-points'] };
 }
 
-function getLastTen(form) {
+export function getLastTen(form) {
   return form.substr(form.length - 10);
 }
 
-function likeButtonText(liked) {
+export function likeButtonText(liked) {
   if (!liked) {
     return `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
@@ -139,6 +130,6 @@ function likeButtonText(liked) {
           <span>Unlike</span>`;
 }
 
-function getFavoriteClub() {
+export function getFavoriteClub() {
   return localStorage.getItem('favoriteClub');
 }
