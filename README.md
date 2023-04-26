@@ -73,7 +73,7 @@ const response = await fetch(url, {
 	headers: {
 		'X-RapidAPI-Key': '915f65df84msh2ef701f1718c032p1f5431jsnfed3d971dc76'
 	});
-const result = await response.text();
+const result = await response.json();
 console.log(result);
 ```
 
