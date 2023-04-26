@@ -369,7 +369,6 @@ main h1 {
 table {
   width: 800px;
   font-size: 18px;
-  /* border: 1px solid #343a40; */
   border-collapse: collapse;
   margin: 0 auto;
 }
@@ -437,10 +436,27 @@ tbody tr:nth-child(even) {
     margin-inline: 1rem;
     border-radius: var(--rounded);
   }
+
   main h1 {
     font-size: 24px;
   }
+
   #search {
     width: 95%;
+  }
+
+  .club-information {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .match-stats {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
   }
 }
