@@ -79,6 +79,10 @@ export async function getClubStats(id) {
   );
 }
 
+export async function getStandings() {
+  return await sendRequest(`${domainUrl}/standings?season=2022&league=39`);
+}
+
 export async function getLeagueRankings() {
   return await sendRequest(
     `https://football-web-pages1.p.rapidapi.com/league-table.json?comp=1`
