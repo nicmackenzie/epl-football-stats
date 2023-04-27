@@ -240,7 +240,9 @@ function renderHTML(info, stats, rank, scorers, secondaryId) {
 
 async function renderLeagueStandings() {
   mainContent.innerHTML = '';
+  setLoadingSpinner();
   const response = await getStandings();
+  removeSpinner();
   const [standings] = response.response[0].league.standings;
   const html = `
     <table>
