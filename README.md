@@ -32,6 +32,7 @@ To access the full application,[click here](https://epl-football-stats.vercel.ap
 - Form input validation.
 - Toggle between light and dark modes.
 - Favorite a club and get its information on initial page load.
+- Display premier league table on initial load if no club is set as favorite.
 
 ### App functionality
 
