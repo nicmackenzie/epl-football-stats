@@ -54,13 +54,14 @@ they will be notified of the same. However, they can choose to unlike the club a
 
 ### API Endpoints
 
-For this application, six(6) endpoints were used to fetch the stats for the different premier league clubs. These endpoints are:
+For this application, seven(7) endpoints were used to fetch the stats for the different premier league clubs. These endpoints are:
 
 ```text
 https://football-web-pages1.p.rapidapi.com/teams.json?comp=1;
 https://api-football-beta.p.rapidapi.com/teams?league=39&season=2022;
 https://api-football-v1.p.rapidapi.com/v3/teams?id=${id}&league=39&season=2022;
 https://api-football-v1.p.rapidapi.com/v3/teams/statistics?league=39&season=2022&team=${id};
+https://api-football-v1.p.rapidapi.com/v3/standings?season=2022&league=39
 https://football-web-pages1.p.rapidapi.com/league-table.json?comp=1;
 https://football-web-pages1.p.rapidapi.com/goalscorers.json?comp=1&team=${id}
 ```
