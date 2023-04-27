@@ -13,6 +13,7 @@ import {
   getTeams,
   changeTheme,
   mainContent,
+  getStandings,
 } from './utils.js';
 // variables
 const themeToggle = document.querySelector('.theme-toggle');
@@ -28,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const favClub = getFavoriteClub()?.toString();
   if (favClub) {
     fetchData(favClub);
+  } else {
+    renderLeagueStandings();
   }
 });
 
@@ -233,6 +236,37 @@ function renderHTML(info, stats, rank, scorers, secondaryId) {
   mainContent.innerHTML = html;
   const btn = mainContent.querySelector('.like-btn');
   btn.addEventListener('click', likeUnlikeHandler);
+}
+
+async function renderLeagueStandings() {
+  mainContent.innerHTML = '';
+  const response = await getStandings();
+  const [standings] = response.response[0].league.standings;
+  const html = `
+    <table>
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Club</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${standings
+          .map(
+            standing => `
+            <tr>
+              <td>${standing.rank}</td>
+              <td>${standing.team.name}</td>
+              <td>${standing.points}</td>
+            </tr>
+        `
+          )
+          .join('')}
+      </tbody>
+    </table>
+  `;
+  mainContent.innerHTML = html;
 }
 
 function likeUnlikeHandler(e) {
